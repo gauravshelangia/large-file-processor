@@ -11,6 +11,10 @@
 
 
 ##TODO
-1. run jar with main class
+1. run jar with main class -- Pom Corrected
 2. Add aggregation logic
 3. Add docker composition for this
+    1. Add db init to mysql
+    2. Check large-file-processor
+        1. build with docker or in advance
+        2. running and resulting output
