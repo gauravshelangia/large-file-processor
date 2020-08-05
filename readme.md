@@ -11,8 +11,11 @@
 
 
 ##TODO
-1. run jar with main class -- Pom Corrected
-2. Add aggregation logic
+1. run jar with main class -- Pom Corrected - DONE
+2. Add aggregation logic -- Done but need to handle locking exception  
+    1. Try building stream solution
+        2. first fetch aggregation result from db
+        2. Then rune executor with batch update similar to ingestion
 3. Add docker composition for this
     1. Add db init to mysql
     2. Check large-file-processor
