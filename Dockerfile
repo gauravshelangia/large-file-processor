@@ -6,9 +6,9 @@ WORKDIR .
 # RUN mvn clean install
 
 # Copy sample-maven-app to user directory
-COPY ["target/large-file-processor-1.0-SNAPSHOT.jar", "/usr/local/large-file-processor"]
+COPY ["target/large-file-processor-1.0-SNAPSHOT.jar", "large-file-processor"]
 
 
 # Execute app
-CMD [ "java", "-jar", "/usr/local/large-file-processor/large-file-processor-1.0-SNAPSHOT.jar" ]
+CMD [ "java", "-jar", "large-file-processor-1.0-SNAPSHOT.jar" ]
 

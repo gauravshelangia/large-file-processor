@@ -1,22 +1,44 @@
 package com.postman;
 
+import com.postman.data.source.MySqlDbSource;
+import com.postman.executor.ExecutorFactory;
 import com.postman.file.processor.CSVFileProcessor;
+import com.postman.file.processor.DataAggregator;
+import com.postman.file.processor.DataAggregatorImpl;
 import com.postman.file.processor.FileProcessor;
 
 import java.sql.SQLException;
 import java.util.Date;
 
 public class App {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, InterruptedException {
         System.out.println("Large File Processor com.postman.file.processor.App Started");
 
-        System.out.println("Start at = " + new Date());
+        System.out.println("Data Ingestion start at = " + new Date());
         long currentMills = System.currentTimeMillis();
 
         String fileToSave = "conf/products.csv";
-        FileProcessor fileProcessor = new CSVFileProcessor();
+        FileProcessor fileProcessor = new CSVFileProcessor(MySqlDbSource.getConnection(),
+                ExecutorFactory.getBlockingExecutorService(5));
         fileProcessor.saveFileToDB(fileToSave);
 
-        System.out.println(System.currentTimeMillis() - currentMills + "ms spent");
+
+        /*
+        Now, run Data Aggregations
+        :improvement/suggestion -- This should be a kind of trigger .... once the data ingestion is done
+        we should trigger the aggregation job. And in case of high volumes/velocity of ingestion,
+        we should make this a cron job.
+         */
+        long ingCompMills = System.currentTimeMillis();
+        System.out.println("Data Ingestion completed in " + (ingCompMills - currentMills) + "ms spent");
+
+
+        System.out.println("Aggregation starts at = " + new Date());
+
+//        Thread.sleep(10000);
+        DataAggregator dataAggregator = new DataAggregatorImpl(MySqlDbSource.getConnection());
+//        dataAggregator.aggregateByNameAndThenStore();
+
+        System.out.println("Data Aggregation completed in = " + (System.currentTimeMillis()-ingCompMills) +" ms");
     }
 }

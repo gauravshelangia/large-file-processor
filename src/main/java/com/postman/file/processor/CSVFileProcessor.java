@@ -20,12 +20,12 @@ public class CSVFileProcessor implements FileProcessor {
     Connection con;
     ExecutorService executor;
 
-    public CSVFileProcessor() throws SQLException {
+    public CSVFileProcessor(Connection connection, ExecutorService executorService) throws SQLException {
         // Use one executor in one processor
-        con = MySqlDbSource.getConnection();
+        this.con = connection;
 
         // Number of threads should be configurable via properties/env
-        executor = ExecutorFactory.getBlockingExecutorService(5);
+        this.executor = executorService;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class CSVFileProcessor implements FileProcessor {
             while (!executor.isShutdown()){
                 //waiting for shutdown
             }
-            System.out.println("Executor shut down successfully");
+            System.out.println("Executor shutdown successfully");
             System.out.println(ERROR_COUNT);
         }
     }

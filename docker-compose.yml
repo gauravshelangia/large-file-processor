@@ -8,6 +8,8 @@ services:
       - mysql-data:/var/local/mysql/data
     ports:
       - "3307:3307"
+    expose:
+      - "3307"
     hostname: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root

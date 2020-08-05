@@ -1,4 +1,6 @@
 com/postman/executor/ExecutorFactory$1.class
+com/postman/file/processor/DataAggregator.class
+com/postman/file/processor/DataAggregatorImpl.class
 com/postman/executor/ExecutorFactory.class
 com/postman/data/source/MySqlDbSource.class
 com/postman/file/processor/CSVFileProcessor.class
