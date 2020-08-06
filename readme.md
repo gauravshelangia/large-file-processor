@@ -46,8 +46,15 @@ CREATE TABLE `product_aggregation` (
 5. Shutdown application setup using command: `docker-compose down`
 
 ## Result
-Number of products: 466693
-Aggregation result count: 212732
+1. Number of products: 466693
+2. Aggregation result count: 212732
+3. Sample products data [here](images/products.png)
+4. Sample aggregation result [here](images/product_agg.png)  
+
+Products             |  Aggregation Result
+:-------------------------:|:-------------------------:
+![](images/products.png) | ![](images/product_agg.png)
+
 
 ### On running on local machine [MacBook with RAM: 8 GB, 2.7 GHz Intel Core i5]
 1. Average data ingestion time = ~6sec
