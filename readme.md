@@ -1,9 +1,29 @@
-#File Processor
+# File Processor
 Application to parse and store the content of a kind of csv to `MySQL` database. Built using 
 JAVA and has highlights listed below:
 1. Parallel ingestion in DB using Executors
 2. Batch ingestion/update to gain performance
 3. Application Dockerized along with the MySQL db (not in a best way)
+
+## DB init Script [here](https://github.com/gauravshelangia/large-file-processor/blob/master/conf/db-init.sql)
+```sql
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sku` varchar(50) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(1024) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE(`sku`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `product_aggregation`;
+CREATE TABLE `product_aggregation` (
+  `product_name` varchar(50) NOT NULL,
+  `count` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY(`product_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 ## Installation
 ### Running on local machine
