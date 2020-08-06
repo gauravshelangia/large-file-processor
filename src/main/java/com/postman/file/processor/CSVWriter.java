@@ -32,6 +32,7 @@ public class CSVWriter implements Runnable {
             }
 
             int[] rows = preparedStatement.executeBatch();
+//            long[] rows = preparedStatement.executeLargeBatch();
 //            System.out.println("Batch size = "+preparedStatement.getLargeUpdateCount());
         } catch (SQLException throwables) {
 //            ERROR_COUNT++;

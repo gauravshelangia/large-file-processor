@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutorService;
 
 public class CSVFileProcessor implements FileProcessor {
 
-    private static final Integer BATCH_SIZE = 50000;
+    private static final Integer BATCH_SIZE = 35000;
     public static Integer ERROR_COUNT = 1;
     Connection con;
     ExecutorService executor;
@@ -29,12 +29,11 @@ public class CSVFileProcessor implements FileProcessor {
     }
 
     @Override
-    public void saveFileToDB(String filePath) {
+    public void saveFileToDB(String filePath) throws InterruptedException {
         String cvsSplitBy = ",";
         try {
             List<String[]> lines = new ArrayList<>();
             int count = 0;
-//            int tcount = 0;
 
             CSVParser csvParser = new CSVParser(new FileReader(filePath),
                     CSVFormat.DEFAULT.withFirstRecordAsHeader());
@@ -45,13 +44,7 @@ public class CSVFileProcessor implements FileProcessor {
                     executor.submit(new CSVWriter(lines, cvsSplitBy, con));
                     count = 0;
                     lines = new ArrayList<>();
-//                    System.out.println("Batch Complete");
                 }
-//                if (tcount % 10000 == 0) {
-//                    System.out.println("T Count = " + tcount + " At = " + new Date());
-//                }
-//                tcount++;
-//                }
             }
             if (count > 0) {
                 executor.submit(new CSVWriter(lines, cvsSplitBy, con));
@@ -62,6 +55,7 @@ public class CSVFileProcessor implements FileProcessor {
         } finally {
             executor.shutdown();
             while (!executor.isShutdown()){
+                Thread.sleep(1000);
                 //waiting for shutdown
             }
             System.out.println("Executor shutdown successfully");

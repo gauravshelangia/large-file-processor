@@ -29,15 +29,19 @@ public class App {
         we should trigger the aggregation job. And in case of high volumes/velocity of ingestion,
         we should make this a cron job.
          */
+
         long ingCompMills = System.currentTimeMillis();
         System.out.println("Data Ingestion completed in " + (ingCompMills - currentMills) + "ms spent");
 
+        // wait for a minute before running aggregate
+        Thread.sleep(30000);
 
         System.out.println("Aggregation starts at = " + new Date());
 
-//        Thread.sleep(10000);
-        DataAggregator dataAggregator = new DataAggregatorImpl(MySqlDbSource.getConnection());
+        DataAggregator dataAggregator = new DataAggregatorImpl(MySqlDbSource.getConnection(),
+                ExecutorFactory.getBlockingExecutorService(5));
 //        dataAggregator.aggregateByNameAndThenStore();
+        dataAggregator.aggregateByNameAndThenStoreUsingBatchUpdate();
 
         System.out.println("Data Aggregation completed in = " + (System.currentTimeMillis()-ingCompMills) +" ms");
     }
