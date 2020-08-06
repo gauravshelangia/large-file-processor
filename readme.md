@@ -27,7 +27,7 @@ CREATE TABLE `product_aggregation` (
 
 ## Installation
 ### Running on local machine
-1. Login to MySql using command `mysql -u root -p` (enter password then)
+1. Login to MySql using command `mysql -u root -p` (enter password then `root`)
 2. Create tables using db-init.sql file with command: `mysql -u root -p postman < large-file-processor/conf/db-init.sql`
 3. Clone this repo and cd to the project directory
 4. Build application using command `mvn clean install` 
@@ -39,6 +39,10 @@ CREATE TABLE `product_aggregation` (
 2. docker-compose.yml has both the services mysql and large-file-processor
 3. Build application using command: `docker-compose build`
 4. Run application setup using command: `docker-compose up -d`
+5. MySql DB setup: 
+  1. Open shell of mysql container using command: `docker exec -it mysql bash`
+  2. Connect to mysql using `mysql -u root -p` (passowrd is `root` ). 
+  3. Create tables using the above added script.
 5. Shutdown application setup using command: `docker-compose down`
 
 ## Result
