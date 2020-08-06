@@ -64,6 +64,15 @@ Products             |  Aggregation Result
 1. Average data ingestion time = ~13sec
 2. Average aggregation and storing result to another table = ~28 sec
 
+## Points Achieved
+1. Parallel data ingestion in batch
+2. Two implementation for doing aggregation 
+    1. Execute aggregate and direct query on DB directly using JDBC connection
+    2. First fetch the result and then update in another table just like
+    data ingestion (parallel batch ingestion)
+3. For the given input both the task, ingestion and storing aggregate result
+done under less 50 sec.
+4. Followed OOPs concept but this can be improved.
 ## Assumptions
 1. SKUs are unique to product so any new details of the existing SKU will get updated and 
 the incoming data will take the priority.
