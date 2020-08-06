@@ -10,7 +10,7 @@ JAVA and has highlights listed below:
 1. Login to MySql using command `mysql -u root -p` (enter password then)
 2. Create tables using db-init.sql file with command: `mysql -u root -p postman < large-file-processor/conf/db-init.sql`
 3. Clone this repo and cd to the project directory
-4. Build application using comman `mvn clean install` 
+4. Build application using command `mvn clean install` 
     - Check your maven installation it could be different command like maven instead of mvn
 5. Run Application using command: `java -jar target/large-file-processor-1.0-SNAPSHOT.jar `
 
@@ -35,8 +35,8 @@ Aggregation result count:
 ##Assumptions
 1. SKUs are unique to product so any new details of the existing SKU will get updated and 
 the incoming data will take the priority.
-2. aggregation table has index on product_name
-2. CSV file should bundle in docker image. (This is not a good idea.) 
+2. aggregation table has an index on the product_name
+3. CSV file should bundle in docker image. (This is not a good idea.) 
 
 ## Improvements
 1. Code level
@@ -48,3 +48,5 @@ the incoming data will take the priority.
     like s3, then download that file to local storage, do the ingestion and delete file.
     4. Error handling in case of failure from DB.
 2. DB init can be added to the mysql build.
+3. Processing very large file
+    1. Divide the big files in chunks and then process individual chunks
