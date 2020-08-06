@@ -41,9 +41,10 @@ CREATE TABLE `product_aggregation` (
 4. Run application setup using command: `docker-compose up -d`
 5. Shutdown application setup using command: `docker-compose down`
 
-##Result
+## Result
 Number of products: 466693
-Aggregation result count: 
+Aggregation result count: 212732
+
 ### On running on local machine [MacBook with RAM: 8 GB, 2.7 GHz Intel Core i5]
 1. Average data ingestion time = ~6sec
 2. Average aggregation and storing result to another table = ~12 sec
@@ -52,7 +53,7 @@ Aggregation result count:
 1. Average data ingestion time = ~13sec
 2. Average aggregation and storing result to another table = ~28 sec
 
-##Assumptions
+## Assumptions
 1. SKUs are unique to product so any new details of the existing SKU will get updated and 
 the incoming data will take the priority.
 2. aggregation table has an index on the product_name
