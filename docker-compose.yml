@@ -6,10 +6,10 @@ services:
     command: mysqld --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql-data:/var/local/mysql/data
-    ports:
-      - "3307:3307"
     expose:
       - "3307"
+    ports:
+      - "3307:3306"
     hostname: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root

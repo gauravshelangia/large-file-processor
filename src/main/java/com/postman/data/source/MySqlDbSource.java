@@ -12,6 +12,7 @@ public class MySqlDbSource {
     private static HikariDataSource ds;
 
     static {
+        System.out.println(config.getJdbcUrl());
         ds = new HikariDataSource( config );
     }
 

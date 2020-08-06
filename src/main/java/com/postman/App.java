@@ -16,7 +16,7 @@ public class App {
 
         System.out.println("Data Ingestion start at = " + new Date());
         long currentMills = System.currentTimeMillis();
-
+        Thread.sleep(1000*6);
         String fileToSave = "conf/products.csv";
         FileProcessor fileProcessor = new CSVFileProcessor(MySqlDbSource.getConnection(),
                 ExecutorFactory.getBlockingExecutorService(5));
