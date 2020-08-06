@@ -50,3 +50,5 @@ the incoming data will take the priority.
 2. DB init can be added to the mysql build.
 3. Processing very large file
     1. Divide the big files in chunks and then process individual chunks
+4. Pass DB properties to docker as environment variable or under deploy tag describe how and
+from where to read properties.
